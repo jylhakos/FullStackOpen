@@ -1,7 +1,4 @@
-.total {
-  font-size: 16px;
-  font-weight: bold;
-}
+li { list-style-type:none; }
 
 body {
   margin: 0;
@@ -16,4 +13,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
