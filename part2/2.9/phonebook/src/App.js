@@ -14,16 +14,34 @@ const App = () => {
 
   //const [ persons, setPersons ] = useState([{ person: null, phone: null }])
 
+  const [filtered, setFiltered] = useState([]);
+
   const [ newName, setNewName ] = useState('')
 
   const [ newPhone, setNewPhone ] = useState('')
 
   const handleFilter = (event) => {
-    const updatedList = persons.sourceData.filter(item => {
-      return item.toLowerCase().search((event).target.value.toLowerCase()) !== -1;
+
+    event.preventDefault()
+
+    let value = event.target.value.toLowerCase();
+
+    let result = [];
+
+    console.log('value', value);
+
+    result = persons.filter((person) => {
+
+      console.log('person.name', person.name);
+
+      return person.name.toLowerCase().indexOf(value) !== -1;
+
     });
-    useState({ persons: updatedList });
-  };
+
+    setFiltered(result)
+
+    //setPersons(result)
+  }
 
   const addPerson = (event) => {
 
@@ -49,6 +67,7 @@ const App = () => {
 
       if (personExists.length === 0) {
         setPersons(persons.concat(personObject))
+        setFiltered(persons)
       } else {
         alert(`${newName} is already added to phonebook`)
       }
@@ -70,7 +89,7 @@ const App = () => {
     return (
       <div>
         <h2>Phonebook</h2>
-        <Filter persons={persons} handleFilter={handleFilter}/>
+        <Filter persons={persons} filtered={filtered} handleFilter={handleFilter}/>
         <h3>Add new</h3>
         <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newPhone={newPhone} handlePhoneChange={handlePhoneChange}/>
         <h2>Numbers</h2>
