@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 //import axios from 'axios';
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import Filter from './components/Filter'
 import personService from './services/personService'
 
 const Notification = ({successMessage}) => {
@@ -21,7 +22,7 @@ const Notification = ({successMessage}) => {
 
 const App = () => {
 
-  const [ persons, setPersons ] = useState([{ person: null, phone: null }]) 
+  const [ persons, setPersons ] = useState([{ person: null, phone: null }])
 
   const [ newName, setNewName ] = useState('')
 
@@ -31,11 +32,14 @@ const App = () => {
 
   const [successMessage, setSuccessMessage] = useState(null)
 
+  const [filtered, setFiltered] = useState([]);
+
   useEffect(() => {
     personService
       .getAll()
       .then(response => {
         setPersons(response.data)
+        setFiltered(response.data)
         let max = 0
         response.data.forEach((object) => {
           console.log(object.id);
@@ -51,6 +55,28 @@ const App = () => {
   }, [])
 
   console.log('counter', counter)
+
+  const handleFilter = (event) => {
+
+    event.preventDefault()
+
+    let value = event.target.value.toLowerCase();
+
+    let result = [];
+
+    console.log('value', value);
+
+    result = persons.filter((person) => {
+
+      console.log('person.name', person.name);
+
+      return person.name.toLowerCase().indexOf(value) !== -1;
+
+    });
+
+    setFiltered(result)
+
+  }
 
   const addPerson = (event) => {
 
@@ -89,6 +115,8 @@ const App = () => {
           
           setPersons(persons.concat(response.data))
 
+          setFiltered(persons.concat(response.data))
+
           setCounter(personObject.id)
 
           setSuccessMessage(`Added ${personObject.name}`)
@@ -96,12 +124,6 @@ const App = () => {
           setTimeout(() => {
             setSuccessMessage(null)
           }, 10000)
-
-        //axios.post('http://localhost:3001/persons', personObject)
-        //.then(response => {
-        //  console.log(response)
-        //  setPersons(persons.concat(response.data))
-        //})
         })
       } else {
         alert(`${newName} is already added to phonebook`)
@@ -137,6 +159,7 @@ const App = () => {
           .getAll()
           .then(response => {
             setPersons(response.data)
+            setFiltered(response.data)
           })
         })
       }
@@ -145,10 +168,12 @@ const App = () => {
     return (
       <div>
         <h2>Phonebook</h2>
-        <Notification successMessage={successMessage} />
+        <Notification successMessage={successMessage}/>
+        <Filter persons={persons} handleFilter={handleFilter}/>
+        <h3>Add New</h3>
         <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newPhone={newPhone} handlePhoneChange={handlePhoneChange}/>
         <h2>Numbers</h2>
-        <Persons persons={persons} handleDeletePerson={handleDeletePerson}/>
+        <Persons persons={persons} filtered={filtered} handleFilter={handleFilter} handleDeletePerson={handleDeletePerson}/>
       </div>
     )
 }

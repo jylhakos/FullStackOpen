@@ -90,7 +90,7 @@ const App = () => {
       <div>
         <h2>Phonebook</h2>
         <Filter persons={persons} filtered={filtered} handleFilter={handleFilter}/>
-        <h3>Add new</h3>
+        <h3>Add New</h3>
         <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newPhone={newPhone} handlePhoneChange={handlePhoneChange}/>
         <h2>Numbers</h2>
         <Persons persons={persons}/>

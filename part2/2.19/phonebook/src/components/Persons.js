@@ -1,15 +1,15 @@
 import React from 'react'
 import Person from './Person'
 
-const Persons = ({ persons, handleDeletePerson }) => {
+const Persons = ({ persons, filtered, handleDeletePerson }) => {
 
   return (  
-    <div>
+    <div style={{padding:5}}>
       <table>
-        { persons.map(person => <Person key={person.id} id={person.id} person={person.name} phone={person.phone} handleDeletePerson={handleDeletePerson}/> )}
+        { filtered.map(person => <Person key={person.id} id={person.id} person={person.name} phone={person.phone} handleDeletePerson={handleDeletePerson}/> )}
       </table>
     </div>
-          )
+    )
 
 }
 

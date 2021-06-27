@@ -5,9 +5,9 @@ const Persons = ({ persons }) => {
 
   return (  
     <div>
-      <ul>
+      <table>
         { persons.map(person => <Person key={person.id} person={person.name} phone={person.phone}/> )}
-      </ul>
+      </table>
     </div>
           )
 

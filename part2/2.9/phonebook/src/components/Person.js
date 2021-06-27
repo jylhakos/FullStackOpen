@@ -5,7 +5,7 @@ const Person = ({ person, phone }) => {
   console.log('person', person, 'phone', phone)
 
   return ( 
-      person != null ? ( <li>{person} {phone}</li> ) : null
+      person != null ? ( <tr><td>{person}</td> <td>{phone}</td></tr> ) : null
       )
 }
 
