@@ -123,7 +123,7 @@ const App = () => {
 
           setTimeout(() => {
             setSuccessMessage(null)
-          }, 10000)
+          }, 5000)
         })
       } else {
         alert(`${newName} is already added to phonebook`)
