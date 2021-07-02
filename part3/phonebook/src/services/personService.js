@@ -1,7 +1,10 @@
 import axios from 'axios'
 //const baseUrl = 'http://localhost:3001/persons'
 // 3.9
-const baseUrl = 'http://localhost:3001/api/persons'
+//const baseUrl = 'http://localhost:3001/api/persons'
+
+//3.10
+const baseUrl = 'https://cs-e4670.herokuapp.com/api/persons'
 
 const getAll = () => {
   return axios.get(baseUrl)
