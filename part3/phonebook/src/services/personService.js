@@ -7,10 +7,19 @@ import axios from 'axios'
 //const baseUrl = 'https://cs-e4670.herokuapp.com/api/persons'
 
 // 3.11
-const baseUrl = '/api/persons'
+//const baseUrl = '/api/persons'
+
+// 3.13 
+const baseUrl = 'http://localhost:3001/api/persons'
 
 // 3.11 
 // $ npm run build
+
+// 3.12
+// $ node --inspect index.js
+
+// 3.12
+// $ npm install mongoose
 
 const getAll = () => {
   return axios.get(baseUrl)
