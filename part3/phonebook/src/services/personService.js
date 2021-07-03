@@ -3,8 +3,14 @@ import axios from 'axios'
 // 3.9
 //const baseUrl = 'http://localhost:3001/api/persons'
 
-//3.10
-const baseUrl = 'https://cs-e4670.herokuapp.com/api/persons'
+// 3.10
+//const baseUrl = 'https://cs-e4670.herokuapp.com/api/persons'
+
+// 3.11
+const baseUrl = '/api/persons'
+
+// 3.11 
+// $ npm run build
 
 const getAll = () => {
   return axios.get(baseUrl)
