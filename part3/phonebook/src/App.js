@@ -1,6 +1,9 @@
 // $ npx json-server --port 3001 --watch db.json
 // $ npm start
 
+// 3.16
+// $ npm run build
+
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios';
 import PersonForm from './components/PersonForm'
@@ -105,7 +108,7 @@ const App = () => {
 
         console.log('personExists.length ', personExists.length)
 
-        //setPersons(persons.concat(personObject))
+        // setPersons(persons.concat(personObject))
 
         // $ npm install axios
 
@@ -113,7 +116,12 @@ const App = () => {
         .then(response => {
 
           console.log('response', response)
-          
+
+          console.log('response.id', response.data.id)
+
+          // 3.18
+          personObject.id = response.data.id
+
           setPersons(persons.concat(response.data))
 
           setFiltered(persons.concat(response.data))
