@@ -92,8 +92,6 @@ const App = () => {
         name: newName,
         phone: newPhone,
         date: new Date().toISOString(),
-        important: Math.random() < 0.5,
-        id: counter + 1,
       }
 
       console.log('personObject', personObject.name, personObject.phone)
@@ -135,7 +133,23 @@ const App = () => {
           }, 5000)
         })
       } else {
-        alert(`${newName} is already added to phonebook`)
+        // 3.3
+        //alert(`${newName} is already added to phonebook`)
+
+        console.log('personExists[0].id', personExists[0].id)
+
+        // 3.17 
+        personService.update(personExists[0].id,personObject)
+        .then(response => {
+            personService
+            .getAll()
+            .then(response => {
+              setPersons(response.data)
+              setFiltered(response.data)
+            })
+
+          alert(`${personExists[0].name} phone ${personExists[0].phone} was changed`)
+        })
       }
       
       setNewName('')
