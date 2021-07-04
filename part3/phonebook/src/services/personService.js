@@ -6,11 +6,11 @@ import axios from 'axios'
 // 3.10
 //const baseUrl = 'https://cs-e4670.herokuapp.com/api/persons'
 
-// 3.11
-//const baseUrl = '/api/persons'
+// 3.11, 3.13, 3.14
+const baseUrl = '/api/persons'
 
 // 3.13 
-const baseUrl = 'http://localhost:3001/api/persons'
+//const baseUrl = 'http://localhost:3001/api/persons'
 
 // 3.11 
 // $ npm run build
